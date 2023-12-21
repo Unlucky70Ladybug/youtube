@@ -1,0 +1,58 @@
+{% load static%}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'youtube/youtube.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <div class="float">
+        <div class="float-center">
+            {{msg|safe}}
+        </div>
+        <div class="float-right">
+            <a href="{% url 'favorites' %}" class="botn">お気に入り動画</a>
+            <p> ログアウトは<a href="{% url 'Logout' %}">こちら</a></p>
+        </div>
+    </div>
+    <form id="myForm" action="{% url 'index'%}" method="post">
+        <table>
+            {% csrf_token %}
+            {{form.as_table}}
+            {{video_num.as_table}}
+            {{genre.as_table}}
+            {{video_time.as_table}}
+            {{order.as_table}}
+        </table>
+        <td>
+            <p class="formbottom">
+                <input type="submit" value="決定" class="btns submit" id="startButton">
+            </p>
+        </td>
+    </form>
+    {% if youtube_video != None %}
+        <hr>
+        {% for youtube in youtube_video %}
+            <div class="video">
+                <form method="post" action="{% url 'videos' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="url" value="{{ youtube.3 }}"><iframe width="560" height="315" src="{{ youtube.3 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <p><input type="hidden" name="title" value="{{ youtube.0 }}">タイトル:{{ youtube.0 }}</p>
+                    <p><input type="hidden" name="channel" value="{{ youtube.1 }}">チャンネル:{{ youtube.1 }}</p>
+                    <p>再生回数:{{ youtube.2 }}</p>
+                    <p><input type="hidden" name="video_time" value="{{youtube.5}}">動画時間:{{youtube.5}}</p>
+                    <p><input type="hidden" name="publish_time" value="{{ youtube.4 }}">投稿時間:{{ youtube.4 }}</p>
+                    <input type="hidden" name="youtube_videos" value="{{youtube_video}}">
+                    <input type="submit" value="お気に入り登録" class="btns submit" id="startButton">
+                </form>
+                <hr>
+                <br>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

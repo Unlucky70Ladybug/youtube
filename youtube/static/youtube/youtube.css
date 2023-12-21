@@ -1,0 +1,133 @@
+body{
+    color:gray;
+    font-size: 16pt;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+body h1{
+    padding:10px;
+    text-align:center;
+    color:blue;
+    margin: 0%;
+}
+.float{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.float-center{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:10px;
+    font-size: 16px;
+    color:red;
+    margin: 0%;
+    text-align:center
+}
+
+.float-right{
+    float: right;
+    padding:10px;
+    font-size: 8pt;
+    color:blue;
+    margin: 0%;
+    text-align:center
+}
+.float-right:hover{
+    color: blue;
+}
+
+p{
+    margin:6px;
+}
+
+table{
+    border-radius: 15px;
+    border-top: 0.5px solid white;
+    border-left: 0.5px solid white;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:14pt;
+}
+table tr th{
+    border-top: 0.5px solid white;
+    border-left: 0.5px solid white;
+    background-color:#009;
+    color:white;
+    padding:2px 10px;
+    border-width:2px;
+}
+table tr td{
+    border-top: 0.5px solid white;
+    border-left: 0.5px solid white;
+    background-color:#eee;
+    color:#666;
+    padding:2px 10px;
+    border-width:2px;
+}
+table tr:first-child th {
+    border-radius: 15px 0 0 0;
+}
+table tr:first-child td {
+    border-radius: 0 15px 0 0;
+}
+table tr:last-child th {
+    border-radius: 0 0 0 15px;
+}
+table tr:last-child td {
+    border-radius: 0 0 15px 0;
+}
+form .formbottom {
+	text-align: center;
+} 
+form .btns{
+    width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0;
+	padding: 6px 25px;
+	color: blue;
+	font-weight: bold;
+	letter-spacing: 0.5pt;
+	text-decoration: none;
+	background-color: #ffffff;
+	border: 1px solid blue;
+	cursor: pointer;
+	transition-duration:0.3s;
+    -webkit-transition-duration:0.3s;
+    -moz-transition-duration:0.3s;
+    -o-transition-duration:0.3s;
+    -ms-transition-duration:0.3s;
+} 
+form .btns:hover{
+    color: #ffffff;
+    background-color: blue;
+}
+.video iframe{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.video p{
+    font-size: 16px;
+    color: gray;
+    text-align:center;
+    margin:0 auto;
+    padding: 3px;
+}
+.botn{
+    border-radius: 100px;
+    display: block;
+    width: 200px;
+    padding: 15px;
+    box-sizing: border-box;
+    background: blue;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin: 10px 0;
+}

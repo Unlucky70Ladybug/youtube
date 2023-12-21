@@ -1,0 +1,27 @@
+databases:
+  - name: mydatabase
+    region: singapore
+    plan: free
+    databaseName: mydatabase
+    user: hayashi
+
+services:
+  - type: web
+    name: search_youtube
+    env: python
+    region: singapore
+    buildCommand: './build.sh'
+    startCommand: 'gunicorn mysite.wsgi:application'
+    plan: free
+    branch: main
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mydatabase
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+    autoDeploy: true

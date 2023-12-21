@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" 
+    href="{% static 'youtube/register1.css' %}">
+</head>
+
+<body>
+<h1>新規登録</h1>
+<p class="msg">{{msg|safe}}</p>
+   <div class="reg">
+       <table class="reg_form">
+           <form method="post" action="{% url 'register' %}">
+               {% csrf_token %}
+               {{ account_form.as_table }}
+               <tr><td></td><td>
+                   <input class="register" type="submit" name="name" value="登録">
+                   <input class="register" type="submit" name="name" value="戻る">
+               </td></tr>
+           </form>
+       </table>
+   </div>
+</body>
+</html>

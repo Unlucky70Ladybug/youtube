@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="{% static 'youtube/youtube.css' %}"/>
+
+</head>
+<body>
+ <h1>Favorites</h1>
+ <div class="float">
+     <div class="float-center">
+         {{msg|safe}}
+     </div>
+     <div class="float-right">
+         <a href="{% url 'index' %}" class="botn">戻る</a>
+         <p>ログアウトは<a href="{% url 'Logout' %}">こちら</a></p>
+     </div>
+ </div>
+ <hr>
+ {% if youtube_video != None %}
+     {% for youtube in youtube_video %}
+         <div class="video">
+             <form method="post" action="{% url 'favorites' %}">
+                 {% csrf_token %}
+                 <input type="hidden" name="url" value="{{ youtube.2 }}"><iframe width="560" height="315" src="{{ youtube.2 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                 <p><input type="hidden" name="title" value="{{ youtube.0 }}">タイトル:{{ youtube.0 }}</p>
+                 <p><input type="hidden" name="channel" value="{{ youtube.1 }}">チャンネル:{{ youtube.1 }}</p>
+                 <p><input type="hidden" name="video_time" value="{{youtube.4}}">動画時間:{{youtube.4}}</p>
+                 <p><input type="hidden" name="publish_time" value="{{ youtube.3}}">投稿時間:{{ youtube.3 }}</p>
+                 <input type="hidden" name="youtube_url" value="{{youtube.2}}">
+                 <input type="submit" value="お気に入り解除" class="btns submit" id="startButton">
+             </form>
+             <hr>
+             <br>
+         </div>
+     {% endfor %}
+ {% endif %}
+ 
+</body>
+</html>

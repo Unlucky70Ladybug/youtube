@@ -1,0 +1,52 @@
+h1{
+  text-align: center;
+}
+
+.msg{
+  text-align: center;
+  font-size: 10px;
+  color: red;
+}
+
+div.reg{
+  background-color: #EEEEEE;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.message{
+  text-align: right;
+  margin-right:20%;
+}
+
+table.reg_form{
+  width: 100%;
+  border-spacing: 10px 30px;
+  padding-left:20px;
+}
+
+.login{
+    color: #fff;
+    background-color: #000033;
+    font-size: 1.0em;
+    padding: 10px 30px;
+    margin-left: 80%;
+}
+
+.register{
+  color: #fff;
+  background-color: #000033;
+  font-size: 1.0em;
+  padding: 10px 30px;
+  margin: 0 auto;
+}
+
+.login:hover{
+  color: #fff;
+  background: #000099;
+}
+
+.register:hover{
+  color: #fff;
+  background: #000099;
+}

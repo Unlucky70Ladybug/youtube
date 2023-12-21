@@ -18,11 +18,7 @@ from decouple import config
 from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-PARENT_DIR = Path(__file__).resolve().parent.parent.parent.parent
-
-env_path = PARENT_DIR / ".env"
-load_dotenv(env_path)
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 env = environ.Env()
@@ -33,13 +29,17 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ["*"]
-
+""""
+ALLOWED_HOSTS = ['127.0.0.1', 'daily-report.onrender.com']
+デプロイ完了後のアプリのURLを指定する。
+つまり、daily-report.onrender.comのところを独自のアプリケーションURLにする。
+"""
 
 # Application definition
 

@@ -133,6 +133,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SUPERUSER_NAME = os.environ.get("SUPERUSER_NAME")
-SUPERUSER_EMAIL = os.environ.get("SUPERUSER_EMAIL")
-SUPERUSER_PASSWORD = os.environ.get("SUPERUSER_PASSWORD")
+SUPERUSER_NAME = env("SUPERUSER_NAME")
+SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
+SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")

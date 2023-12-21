@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import environ
 import os
 from decouple import config
@@ -19,7 +19,7 @@ from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(find_dotenv())
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -29,10 +29,10 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 """"
@@ -138,6 +138,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SUPERUSER_NAME = env("SUPERUSER_NAME")
-SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
-SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
+SUPERUSER_NAME = os.environ.get("SUPERUSER_NAME")
+SUPERUSER_EMAIL = os.environ.get("SUPERUSER_EMAIL")
+SUPERUSER_PASSWORD = os.environ.get("SUPERUSER_PASSWORD")

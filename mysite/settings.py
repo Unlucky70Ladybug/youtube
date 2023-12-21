@@ -34,12 +34,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ["*"]
-""""
-ALLOWED_HOSTS = ['127.0.0.1', 'daily-report.onrender.com']
-デプロイ完了後のアプリのURLを指定する。
-つまり、daily-report.onrender.comのところを独自のアプリケーションURLにする。
-"""
+ALLOWED_HOSTS = ['search-youtube.onrender.com/index']
 
 # Application definition
 

@@ -3,13 +3,12 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>{{title}}</title>
     <link rel="stylesheet" type="text/css" 
         href="{% static 'youtube/youtube.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
 </head>
 <body>
-    <h1>{{title}}</h1>
+    <h1>youtube_search</h1><span class="h1span">user:</span><span class="user">{{user|safe}}</span>
     <div class="float">
         <div class="float-center">
             {{msg|safe}}

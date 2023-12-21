@@ -5,21 +5,38 @@ import regex
 
 class AccountForm(forms.ModelForm):
     # パスワード入力：非表示対応
-    password = forms.CharField(widget=forms.PasswordInput(),label="パスワード")
+    username = forms.CharField(label='ユーザー名', required=False)
+    password = forms.CharField(widget=forms.PasswordInput(),\
+                               label="パスワード", required=False)
+    re_password = forms.CharField(widget=forms.PasswordInput(),\
+                               label="パスワード再入力", required=False)
 
     class Meta():
         # ユーザー認証
         model = User
         # フィールド指定
-        fields = ('username','password')
+        fields = ('username','password', 're_password')
         # フィールド名指定
-        labels = {'username':"ユーザー名",'password':"パスワード"}
-    
+        labels = {'username':"ユーザー名",'password':"パスワード",'re_password':"パスワード再入力"}
+        
     def clean_username(self):
-        clean_username = self.cleaned_data.get('username')
-        if regex.match(r'^(?=[A-Za-z0-9@.+_-]{1,150}$)(?![\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]+$).*',clean_username) is None:
+        my_username = self.cleaned_data.get('username')
+        if not my_username:
+            raise forms.ValidationError('ユーザー名が入力されていません')
+        elif regex.match(r'^(?=[A-Za-z0-9@.+_-]{1,150}$)(?![\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]+$).*',my_username) is None:
             raise forms.ValidationError('150文字以内、アルファベット、数字、@/./+/-/_のみ')
-        return clean_username
+        return my_username
+
+    def clean_re_password(self):
+        my_password = self.cleaned_data.get('password')
+        my_re_password = self.cleaned_data.get('re_password')
+        if not my_password:
+            raise forms.ValidationError("パスワードが入力されていません。")
+        elif not my_re_password:
+            raise forms.ValidationError("パスワードが再入力されていません。")
+        elif my_password != my_re_password:
+            raise forms.ValidationError("パスワードが一致しません。")
+        return my_password
     
 class ItemForm(forms.Form):
     apikey = forms.CharField(widget=forms.PasswordInput(),label='APIkeyを入れてください')

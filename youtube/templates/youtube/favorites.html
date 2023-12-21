@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="ja" dir="ltr">
+<html lang="ja">
 <head>
-<meta charset="utf-8">
-<title></title>
-<link rel="stylesheet" href="{% static 'youtube/youtube.css' %}"/>
-
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'youtube/youtube.css' %}"/>
 </head>
 <body>
- <h1>Favorites</h1>
+    <h1>Favorites</h1><span class="h1span">user:</span><span class="user">{{user|safe}}</span>
  <div class="float">
      <div class="float-center">
          {{msg|safe}}

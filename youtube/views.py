@@ -41,18 +41,15 @@ def user_login(request):
     elif request.method == 'GET':
         return render(request, 'youtube/login.html', context=params)
     
-@login_required(login_url='/youtube/')
+@login_required(login_url='/search-youtube.onrender.com/')
 def user_logout(request):
     logout(request)
     #ログイン画面へ
     return HttpResponseRedirect(reverse('Login'))    
-    #return render(request,'youtube/login.html')
     
-@login_required(login_url='/youtube/')
+@login_required(login_url='/search-youtube.onrender.com/')
 def videos(request):
     params = {
-        
-        'title':'youtube_search',
         
         'msg':'',
         
@@ -119,6 +116,7 @@ class AccountRegistration(TemplateView):
         
         elif request.POST['name'] == '登録': 
             item = AccountForm(request.POST)
+            self.params["account_form"] = item
             # フォーム入力の有効検証
             if item.is_valid():
                 # アカウント情報をDB保存
@@ -130,17 +128,15 @@ class AccountRegistration(TemplateView):
                 self.params["msg"] = "登録しました"
     
             else:
-                # フォームが有効でない場合
-                self.params["msg"] = "正しく入力させていないか、既にそのユーザー名は登録させています"
                 return render(request,"youtube/register.html",context=self.params)
     
             return render(request,"youtube/register.html",context=self.params)
         
-@login_required(login_url='/youtube/')
+@login_required(login_url='/search-youtube.onrender.com/')
 def favorites(request):
     params = {
         
-        "UserID":request.user,
+        "user":request.user,
         
         "msg":"",
         
@@ -169,10 +165,11 @@ def favorites(request):
         return render(request,"youtube/favorites.html",context=params)
     
 
-@login_required(login_url='/youtube/')
+@login_required(login_url='/search-youtube.onrender.com/')
 def index(request):
     params={
-        'title':'youtube_search',
+
+        'user': request.user,
         
         'msg':'',
             

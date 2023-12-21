@@ -18,8 +18,8 @@ from decouple import config
 from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-PARENT_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+PARENT_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 env_path = PARENT_DIR / ".env"
 load_dotenv(env_path)

@@ -41,13 +41,13 @@ def user_login(request):
     elif request.method == 'GET':
         return render(request, 'youtube/login.html', context=params)
     
-@login_required(login_url='/search-youtube.onrender.com/')
+@login_required(login_url='/youtube/')
 def user_logout(request):
     logout(request)
     #ログイン画面へ
     return HttpResponseRedirect(reverse('Login'))    
     
-@login_required(login_url='/search-youtube.onrender.com/')
+@login_required(login_url='/youtube/')
 def videos(request):
     params = {
         
@@ -132,7 +132,7 @@ class AccountRegistration(TemplateView):
     
             return render(request,"youtube/register.html",context=self.params)
         
-@login_required(login_url='/search-youtube.onrender.com/')
+@login_required(login_url='/youtube/')
 def favorites(request):
     params = {
         
@@ -165,7 +165,7 @@ def favorites(request):
         return render(request,"youtube/favorites.html",context=params)
     
 
-@login_required(login_url='/search-youtube.onrender.com/')
+@login_required(login_url='/youtube/')
 def index(request):
     params={
 
